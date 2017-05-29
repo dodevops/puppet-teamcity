@@ -13,9 +13,9 @@
 . /lib/lsb/init-functions
 
 NAME=build-agent
-DAEMON=<%= @agent_dir %>/bin/agent.sh
-PIDFILE=<%= @agent_dir %>/logs/buildAgent.pid
-USER=<%= @agent_user %>
+DAEMON=<%= scope['::teamcity::agent_dir'] %>/bin/agent.sh
+PIDFILE=<%= scope['::teamcity::agent_dir'] %>/logs/buildAgent.pid
+USER=<%= scope['::teamcity::agent_user'] %>
 
 # If the daemon is not there, then exit.
 test -x $DAEMON || exit 5
