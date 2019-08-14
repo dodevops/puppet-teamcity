@@ -10,6 +10,11 @@ User=<%= scope['::teamcity::agent_user'] %>
 PIDFile=<%= scope['::teamcity::agent_dir'] %>/logs/buildAgent.pid
 ExecStart=<%= scope['::teamcity::agent_dir'] %>/bin/agent.sh start
 ExecStop=<%= scope['::teamcity::agent_dir'] %>/bin/agent.sh stop
+Restart=on-failure
+RestartSec=5s
+
+# agent will exit with 143 during upgrade process
+SuccessExitStatus=143
 
 [Install]
 WantedBy=multi-user.target
