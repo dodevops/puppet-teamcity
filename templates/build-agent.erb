@@ -17,6 +17,8 @@ DAEMON=<%= scope['::teamcity::agent_dir'] %>/bin/agent.sh
 PIDFILE=<%= scope['::teamcity::agent_dir'] %>/logs/buildAgent.pid
 USER=<%= scope['::teamcity::agent_user'] %>
 
+. /etc/profile.d/teamcity.sh
+
 # If the daemon is not there, then exit.
 test -x $DAEMON || exit 5
 

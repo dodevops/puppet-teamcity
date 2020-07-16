@@ -7,6 +7,7 @@ After=network.target
 [Service]
 Type=forking
 User=<%= scope['::teamcity::agent_user'] %>
+EnvironmentFile=-/etc/profile.d/teamcity.sh
 PIDFile=<%= scope['::teamcity::agent_dir'] %>/logs/buildAgent.pid
 ExecStart=<%= scope['::teamcity::agent_dir'] %>/bin/agent.sh start
 ExecStop=<%= scope['::teamcity::agent_dir'] %>/bin/agent.sh stop

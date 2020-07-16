@@ -60,7 +60,8 @@ class teamcity::params {
   }
 
   # agent parameters
-  $teamcity_agent_mem_opts = '-Xms512m -Xmx1024m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8'
+  $teamcity_agent_mem_opts = '-Xms256m -Xmx1024m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8'
+  $teamcity_agent_jre      = undef
   $custom_properties       = { }
   $launcher_wrapper_conf   = { }
 }
