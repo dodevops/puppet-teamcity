@@ -30,7 +30,10 @@ class teamcity::agent::config {
       owner   => 'root',
       group   => 'root',
       mode    => '0755',
-      content => template("${module_name}/teamcity-profile.erb"),
+      content => epp("${module_name}/teamcity-profile.epp", {
+        'teamcity_agent_mem_opts' => $::teamcity::teamcity_agent_mem_opts,
+        'teamcity_agent_jre' => $::teamcity::teamcity_agent_jre,
+      }),
     }
   }
 }

@@ -1,3 +1,4 @@
+<% | String $agent_dir, String $agent_user | %>
 #!/bin/sh -
 # File is managed by Puppet
 
@@ -13,9 +14,9 @@
 . /lib/lsb/init-functions
 
 NAME=build-agent
-DAEMON=<%= scope['::teamcity::agent_dir'] %>/bin/agent.sh
-PIDFILE=<%= scope['::teamcity::agent_dir'] %>/logs/buildAgent.pid
-USER=<%= scope['::teamcity::agent_user'] %>
+DAEMON=<%= $agent_dir %>/bin/agent.sh
+PIDFILE=<%= $agent_dir %>/logs/buildAgent.pid
+USER=<%= $agent_user %>
 
 . /etc/profile.d/teamcity.sh
 

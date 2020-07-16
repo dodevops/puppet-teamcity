@@ -1,0 +1,10 @@
+<% | String $teamcity_agent_mem_opts, Optional[String] $teamcity_agent_jre = undef | %>
+#!/bin/sh
+#
+# File is managed by Puppet.
+#
+
+export TEAMCITY_AGENT_MEM_OPTS="<%= $teamcity_agent_mem_opts %>"
+<% unless $teamcity_agent_jre =~ Undef { -%>
+export TEAMCITY_JRE="<%= $teamcity_agent_jre %>"
+<% } -%>

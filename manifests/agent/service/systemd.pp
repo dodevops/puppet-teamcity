@@ -7,7 +7,10 @@ class teamcity::agent::service::systemd {
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
-    content => template("${module_name}/build-agent-service.erb"),
+    content => epp("${module_name}/build-agent-service.epp", {
+      'agent_dir' => $::teamcity::agent_dir,
+      'agent_user' => $::teamcity::agent_user,
+    }),
     before  => Service['build-agent.service'],
     notify  => Exec['systemd_reload'],
   }

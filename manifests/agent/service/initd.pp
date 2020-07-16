@@ -7,7 +7,10 @@ class teamcity::agent::service::initd {
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
-    content => template("${module_name}/build-agent.erb"),
+    content => epp("${module_name}/build-agent.epp", {
+      'agent_dir' => $::teamcity::agent_dir,
+      'agent_user' => $::teamcity::agent_user,
+    }),
     before  => Service['build-agent'],
     notify  => Service['build-agent'],
   }
