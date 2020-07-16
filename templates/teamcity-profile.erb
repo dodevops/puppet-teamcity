@@ -4,6 +4,6 @@
 #
 
 export TEAMCITY_AGENT_MEM_OPTS="<%= scope['::teamcity::teamcity_agent_mem_opts'] %>"
-<%- if scope['::teamcity::teamcity_agent_jre'] -%>
+<%- unless scope['::teamcity::teamcity_agent_jre'].nil? -%>
 export TEAMCITY_JRE="<%= scope['::teamcity::teamcity_agent_jre'] %>"
-<% end -%>
+<%- end -%>
