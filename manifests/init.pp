@@ -61,7 +61,10 @@
 #   On windows defaults to `service`, on Linux defaults to `init`.
 #
 # [*teamcity_agent_mem_opts*]
-#   String for configuring additional java parameters for build agent
+#   JVM Memory options for the teamcity agent
+#
+# [*teamcity_agent_jre*]
+#   Path to jre specifically for the teamcity agent to use
 #
 # [*custom_properties*]
 #   Hash of custom properties, that will be applied to conf/buildAgent.properties
@@ -89,6 +92,7 @@ class teamcity (
   $service_enable          = $teamcity::params::service_enable,
   $service_provider        = $teamcity::params::service_provider,
   $teamcity_agent_mem_opts = $teamcity::params::teamcity_agent_mem_opts,
+  $teamcity_agent_jre      = $teamcity::params::teamcity_agent_jre,
   $custom_properties       = $teamcity::params::custom_properties,
   $launcher_wrapper_conf   = $teamcity::params::launcher_wrapper_conf,
 ) inherits ::teamcity::params {
