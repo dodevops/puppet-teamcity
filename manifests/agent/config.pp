@@ -6,7 +6,7 @@ class teamcity::agent::config {
   }
 
   # configure buildAgent.properties
-  $merged_params = merge($required_properties, $::teamcity::custom_properties)
+  $merged_params = $required_properties + $::teamcity::custom_properties
   create_ini_settings(
     { '' => $merged_params },
     { 'path' => "${::teamcity::agent_dir}/conf/buildAgent.properties" }

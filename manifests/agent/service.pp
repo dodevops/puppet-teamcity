@@ -1,6 +1,6 @@
 # PRIVATE CLASS: do not call directly
 class teamcity::agent::service {
-  if is_array($teamcity::params::service_providers) {
+  if $teamcity::params::service_providers =~ Array {
     # Verify the service provider given is in the array
     if ! ($teamcity::service_provider in $teamcity::params::service_providers) {
       fail("'${teamcity::service_provider}' is not a valid provider for '${::operatingsystem}'")
