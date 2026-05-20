@@ -1,19 +1,19 @@
 {
-    "name": "grundic-teamcity",
-    "version": "2.0.0",
-    "author": "grundic",
-    "summary": "Puppet module to install and configure Teamcity",
-    "license": "Apache-2.0",
-    "source": "https://github.com/grundic/puppet-teamcity",
-    "project_page": "https://github.com/grundic/puppet-teamcity",
-    "issues_url": "https://github.com/grundic/puppet-teamcity/issues",
-    "tags": [
-      "TeamCity",
-      "JetBrains",
-      "CI",
-      "Continues Integration"
-    ],
-    "operatingsystem_support": [
+  "name": "grundic-teamcity",
+  "version": "2.0.0",
+  "author": "grundic",
+  "summary": "Puppet module to install and configure Teamcity",
+  "license": "Apache-2.0",
+  "source": "https://github.com/grundic/puppet-teamcity",
+  "project_page": "https://github.com/grundic/puppet-teamcity",
+  "issues_url": "https://github.com/grundic/puppet-teamcity/issues",
+  "tags": [
+    "TeamCity",
+    "JetBrains",
+    "CI",
+    "Continues Integration"
+  ],
+  "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
@@ -61,27 +61,25 @@
         "8"
       ]
     }
-    ],
-    "dependencies": [
-        {
-            "name": "puppetlabs/stdlib",
-            "version_requirement": ">= 2.3.0"
-        },
-        {
-            "name": "maestrodev-wget",
-            "version_requirement": ">= 1.0.0"
-        },
-        {
-            "name": "puppet-download_file",
-            "version_requirement": ">= 1.2.1"
-        },
-        {
-            "name": "puppetlabs/inifile",
-            "version_requirement": ">= 1.4.1"
-        },
-        {
-            "name": "badgerious-windows_env",
-            "version_requirement": ">= 2.2.2"
-        }
-    ]
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.10.0 < 9.0.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 2.3.0"
+    },
+    {
+      "name": "maestrodev-wget",
+      "version_requirement": ">= 1.0.0"
+    },
+    {
+      "name": "puppetlabs/inifile",
+      "version_requirement": ">= 1.4.1"
+    }
+  ]
 }

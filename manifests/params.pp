@@ -1,7 +1,7 @@
 # PRIVATE CLASS: do not use directly
 class teamcity::params {
   # general parameters
-  $agent_name              = $::hostname
+  $agent_name              = $facts['networking']['hostname']
   $agent_user              = 'teamcity'
   $agent_user_home         = undef
   $manage_agent_user_home  = false
@@ -26,9 +26,9 @@ class teamcity::params {
   $service_enable          = true
   $service_provider        = 'init'
 
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'RedHat', 'CentOS', 'Fedora', 'Scientific', 'OracleLinux', 'SLC': {
-      if versioncmp($::operatingsystemmajrelease, '7') >= 0 {
+      if versioncmp($facts['os']['release']['major'], '7') >= 0 {
         $service_providers = 'systemd'
       } else {
         $service_providers = ['init']
@@ -38,24 +38,21 @@ class teamcity::params {
       $service_providers = 'init'
     }
     'Debian': {
-      if versioncmp($::operatingsystemmajrelease, '8') >= 0 {
+      if versioncmp($facts['os']['release']['major'], '8') >= 0 {
         $service_providers = ['systemd', 'init']
       } else {
         $service_providers = [ 'init' ]
       }
     }
     'Ubuntu': {
-      if versioncmp($::operatingsystemmajrelease, '15') >= 0 {
+      if versioncmp($facts['os']['release']['major'], '15') >= 0 {
         $service_providers = 'systemd'
       } else {
         $service_providers = [ 'init' ]
       }
     }
-    'windows': {
-      $service_run_type    = ['service', 'standalone']
-    }
     default: {
-      fail("'${module_name}' provides no service parameters for '${::operatingsystem}' operating system!")
+      fail("'${module_name}' provides no service parameters for '${facts['os']['name']}' operating system!")
     }
   }
 

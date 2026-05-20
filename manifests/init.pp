@@ -92,7 +92,7 @@ class teamcity (
   $custom_properties       = $teamcity::params::custom_properties,
   $launcher_wrapper_conf   = $teamcity::params::launcher_wrapper_conf,
 ) inherits ::teamcity::params {
-  anchor { '::teamcity::begin': } ->
-  class { '::teamcity::agent': } ->
-  anchor { '::teamcity::end': }
+  anchor { '::teamcity::begin': }
+  -> class { '::teamcity::agent': }
+  -> anchor { '::teamcity::end': }
 }

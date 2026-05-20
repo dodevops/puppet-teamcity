@@ -18,19 +18,10 @@ class teamcity::agent::config {
     { 'path' => "${::teamcity::agent_dir}/launcher/conf/wrapper.conf" }
   )
 
-  if $::kernel == 'windows' {
-    windows_env { 'TEAMCITY_AGENT_MEM_OPTS':
-      ensure    => present,
-      value     => $::teamcity::teamcity_agent_mem_opts,
-      mergemode => clobber,
-    }
-  }
-  else {
-    file { '/etc/profile.d/teamcity.sh':
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0755',
-      content => template("${module_name}/teamcity-profile.erb"),
-    }
+  file { '/etc/profile.d/teamcity.sh':
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    content => template("${module_name}/teamcity-profile.erb"),
   }
 }

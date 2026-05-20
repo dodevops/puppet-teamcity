@@ -3,7 +3,7 @@ class teamcity::agent::service {
   if $teamcity::params::service_providers =~ Array {
     # Verify the service provider given is in the array
     if ! ($teamcity::service_provider in $teamcity::params::service_providers) {
-      fail("'${teamcity::service_provider}' is not a valid provider for '${::operatingsystem}'")
+      fail("'${teamcity::service_provider}' is not a valid provider for '${facts['os']['name']}'")
     }
     $real_service_provider = $teamcity::service_provider
   } else {
@@ -18,18 +18,12 @@ class teamcity::agent::service {
     'systemd': {
       $class_name = 'systemd'
     }
-    'service': {
-      $class_name = 'win_service'
-    }
-    'standalone': {
-      $class_name = 'win_service'
-    }
     default: {
       fail("Unknown service provider '${real_service_provider}'!")
     }
   }
 
-  anchor { '::teamcity::agent::service::start': } ->
-  class{ "::teamcity::agent::service::${class_name}": } ->
-  anchor { '::teamcity::agent::service::end': }
+  anchor { '::teamcity::agent::service::start': }
+  -> class{ "::teamcity::agent::service::${class_name}": }
+  -> anchor { '::teamcity::agent::service::end': }
 }
