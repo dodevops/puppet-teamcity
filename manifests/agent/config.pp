@@ -7,13 +7,13 @@ class teamcity::agent::config {
 
   # configure buildAgent.properties
   $merged_params = $required_properties + $::teamcity::custom_properties
-  create_ini_settings(
+  inifile::create_ini_settings(
     { '' => $merged_params },
     { 'path' => "${::teamcity::agent_dir}/conf/buildAgent.properties" }
   )
 
   # configure launcher/conf/wrapper.conf
-  create_ini_settings(
+  inifile::create_ini_settings(
     { '' => $::teamcity::launcher_wrapper_conf },
     { 'path' => "${::teamcity::agent_dir}/launcher/conf/wrapper.conf" }
   )
